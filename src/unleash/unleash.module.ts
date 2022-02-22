@@ -63,6 +63,8 @@ export class UnleashModule implements OnModuleInit {
     await this.togglesUpdater.start()
 
     if (!(this.options.disableRegistration ?? true)) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
+      this.options.logger?.info('Registering unleash client')
       try {
         await this.registerClient.register(
           this.metricsInterval,
@@ -70,6 +72,13 @@ export class UnleashModule implements OnModuleInit {
         )
         await this.metricsUpdater.start()
       } catch (error) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
+        this.options.logger?.error(
+          'An error occurred when trying to register client',
+          {
+            err: error,
+          },
+        )
         this.logger.error(error)
       }
     }
@@ -81,6 +90,8 @@ export class UnleashModule implements OnModuleInit {
         options: UnleashModuleOptions,
       ): UnleashStrategiesModuleOptions => ({
         strategies: options.strategies ?? [],
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        logger: options.logger,
       }),
       inject: [UNLEASH_MODULE_OPTIONS],
     })
@@ -91,6 +102,8 @@ export class UnleashModule implements OnModuleInit {
         instanceId: options.instanceId,
         timeout: options.http?.timeout || DEFAULT_TIMEOUT,
         http: options.http,
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        logger: options.logger,
       }),
       inject: [UNLEASH_MODULE_OPTIONS],
     })
@@ -126,8 +139,11 @@ export class UnleashModule implements OnModuleInit {
       // extraProviders: options.strategies,
       useFactory: (
         options: UnleashModuleOptions,
+        // eslint-disable-next-line sonarjs/no-identical-functions
       ): UnleashStrategiesModuleOptions => ({
         strategies: options.strategies ?? [],
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        logger: options.logger,
       }),
       inject: [UNLEASH_MODULE_OPTIONS, ModuleRef],
     })
@@ -139,6 +155,8 @@ export class UnleashModule implements OnModuleInit {
         instanceId: options.instanceId,
         timeout: options.http?.timeout || DEFAULT_TIMEOUT,
         http: options.http,
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        logger: options.logger,
       }),
       inject: [UNLEASH_MODULE_OPTIONS],
     })

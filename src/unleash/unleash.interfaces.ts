@@ -62,6 +62,8 @@ export interface UnleashModuleOptions {
    * behavior, a custom user ID factory can be provided.
    */
   userIdFactory?: (request: ExpressRequest | Request<{ id: string }>) => string
+
+  logger?: any
 }
 
 export interface UnleashModuleAsyncOptions

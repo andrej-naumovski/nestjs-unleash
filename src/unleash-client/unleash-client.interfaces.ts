@@ -6,6 +6,8 @@ export interface UnleashClientModuleOptions {
   instanceId: string
   appName: string
   http?: AxiosRequestConfig
+
+  logger?: any
 }
 
 export interface UnleashClientModuleOptionsFactory {

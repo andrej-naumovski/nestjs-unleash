@@ -39,6 +39,8 @@ export interface UnleashStrategiesOptionsFactory {
 
 export interface UnleashStrategiesModuleOptions {
   strategies: Type<UnleashStrategy>[]
+
+  logger?: any
 }
 
 export interface UnleashStrategiesModuleAsyncOptions
