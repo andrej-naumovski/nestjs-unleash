@@ -3,8 +3,7 @@
   "version": "2.2.0",
   "description": "Unleash integration for NestJS",
   "author": "Philipp Busse",
-  "main": "dist/src/index.js",
-  "types": "dist/src/index.d.ts",
+  "main": "src/index.ts",
   "bugs": {
     "url": "https://github.com/pmb0/nestjs-unleash/issues"
   },
